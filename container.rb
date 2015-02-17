@@ -9,7 +9,7 @@ include MCollective::RPC
 
 mc = rpcclient("docker")
 mc.progress = true
-mc.discover :nodes => ["eselivm2v882l"]
+mc.discover :nodes => ["host1"]
 
 =begin
 
