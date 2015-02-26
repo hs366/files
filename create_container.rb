@@ -15,7 +15,6 @@ def _request(htmethod, endpoint, options = {}, body = "")
       URI.escape(r[0].to_s) + "=" + 
       URI.escape(r[1].to_s) }
   end
-  #rs = URI.parse(rs)
   $logger.debug("docker/_request htmethod=#{htmethod} endpint=#{endpoint}, request=unix:///#{rs}, body=#{body}")
 
   case htmethod
@@ -34,8 +33,8 @@ def _request(htmethod, endpoint, options = {}, body = "")
   else
     raise "Internal error"
   end
-  # $logger.debug "this is response body#{response.body}"
-  case response.status
+  
+ case response.status
   when 200
     return response.status
   when 201
@@ -48,9 +47,6 @@ def _request(htmethod, endpoint, options = {}, body = "")
 end
 
 config = '{"Cmd": "date", "Image": "ubuntu"}'
-
 get_response = _request(:post, 'containers/create', {}, config )
-#get_response = _request(:get, 'version')
-
 ap JSON.parse(get_response)
 
